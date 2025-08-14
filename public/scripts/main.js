@@ -152,7 +152,7 @@ function updateNavigationButtons() {
     // Cambiar texto y estilo del botón en la última pregunta
     if (currentQuestionIndex === window.testData.questions.length - 1) {
         nextBtn.innerHTML = '✓';
-        nextBtn.onclick = calculateResults;
+    nextBtn.onclick = showResults;
         nextBtn.classList.add('finish-btn');
     } else {
         nextBtn.innerHTML = '›';
@@ -195,7 +195,7 @@ function selectAnswer(button, value) {
             nextQuestion();
         } else {
             // Si es la última pregunta, mostrar resultados automáticamente
-            calculateResults();
+            showResults();
         }
     }, 600); // Delay de 600ms para que el usuario vea la selección y animación
 }
