@@ -221,12 +221,56 @@ function showResults() {
     // Guardar datos en localStorage para poder regresar a resultados
     localStorage.setItem('userAnswers', JSON.stringify(userAnswers));
     localStorage.setItem('userDemographics', JSON.stringify(userDemographics));
-    
+
+    // Generar un user_id único para esta sesión
+    const user_id = 'user_' + Date.now() + '_' + Math.floor(Math.random() * 10000);
+
+    // Enviar datos demográficos al backend
+    const demographicsPayload = {
+        user_id,
+        age: userDemographics.age,
+        gender: userDemographics.gender,
+        location: userDemographics.department // El backend espera 'location'
+    };
+    fetch('/api/demographics', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(demographicsPayload)
+    })
+    .then(res => res.json())
+    .then(data => {
+        console.log('Demográficos enviados:', data);
+    })
+    .catch(err => {
+        console.error('Error enviando demográficos:', err);
+    });
+
+    // Enviar respuestas al backend
+    window.testData.questions.forEach((q, idx) => {
+        const answerPayload = {
+            user_id,
+            question_id: q.id || (idx + 1).toString(),
+            answer: userAnswers[idx]
+        };
+        fetch('/api/answers', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(answerPayload)
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(`Respuesta enviada para pregunta ${idx + 1}:`, data);
+        })
+        .catch(err => {
+            console.error(`Error enviando respuesta ${idx + 1}:`, err);
+        });
+    });
+
     const affinityScores = calculateAffinity();
-    
+
     hideAllSections();
     resultsSection.classList.add('active');
-    
+
     displayResults(affinityScores);
 }
 
