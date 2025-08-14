@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test de Afinidad Política</title>
+    <link rel="icon" type="image/x-icon" href="images/icon.ico">
+</head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test de Afinidad Política</title>
+        <link rel="icon" type="image/x-icon" href="icon.ico">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <!-- Sección de Bienvenida -->
+    <section id="welcome" class="section active">
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-12">
+                    <div class="welcome-content">
+                        <!-- Logo de la iniciativa -->
+                        <div class="logo-container">
+                            <div class="logo-placeholder">
+                                <img src="images/Logo SP-11.png" alt="Sintonía Política" class="main-logo">
+                            </div>
+                        </div>
+                        
+                        <h1 class="main-title">¡Hola y bienvenid@ a Sintonía Política!</h1>
+                        <div class="description">
+                            <p>Aquí no venimos a decirte por quién votar, sino a darte una brújula para que encuentres tu propia sintonía con las propuestas que hay sobre la mesa.</p>
+                            
+                            <p>No tenemos camiseta política ni jugamos para ningún equipo. Solo queremos que cuentes con una herramienta clara, sencilla y neutral para comparar ideas y decidir con libertad.</p>
+                            
+                            <p><strong>Esta encuesta tiene 20 afirmaciones sobre temas clave para Bolivia.</strong> En cada una podrás elegir entre 5 opciones:</p>
+                            
+                            <div class="demo-options">
+                                <div class="demo-question">
+                                    <p class="demo-question-text">Ejemplo: "El Estado debe tener un rol más activo en la economía"</p>
+                                    <div class="demo-answer-options">
+                                        <button class="demo-answer-btn" data-value="-2">Muy en<br>desacuerdo</button>
+                                        <button class="demo-answer-btn" data-value="-1">En<br>desacuerdo</button>
+                                        <button class="demo-answer-btn" data-value="0">Neutral</button>
+                                        <button class="demo-answer-btn" data-value="1">De<br>acuerdo</button>
+                                        <button class="demo-answer-btn" data-value="2">Muy de<br>acuerdo</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="privacy-notice">
+                                <p><strong>🔒 Privacidad garantizada:</strong> Tus respuestas son 100% anónimas y se usan solo para mostrarte con qué propuestas coincides más. No guardamos ni compartimos tu información personal.</p>
+                                
+                                <p><strong>📊 Al terminar,</strong> verás tu porcentaje de afinidad con cada candidatura y un resumen por temas.</p>
+                            </div>
+                            
+                            <!-- Datos demográficos integrados -->
+                            <div class="demographics-section">
+                                <h3>Información Personal</h3>
+                                <div class="row g-3">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="age" class="form-label">Edad:</label>
+                                            <input type="number" id="age" class="form-control" min="18" max="120" placeholder="Tu edad" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="gender" class="form-label">Sexo:</label>
+                                            <select id="gender" class="form-select" required>
+                                                <option value="">Selecciona</option>
+                                                <option value="masculino">Masculino</option>
+                                                <option value="femenino">Femenino</option>
+                                                <option value="otro">Otro</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="department" class="form-label">Departamento:</label>
+                                            <select id="department" class="form-select" required>
+                                                <option value="">Selecciona</option>
+                                                <option value="la-paz">La Paz</option>
+                                                <option value="santa-cruz">Santa Cruz</option>
+                                                <option value="cochabamba">Cochabamba</option>
+                                                <option value="oruro">Oruro</option>
+                                                <option value="potosi">Potosí</option>
+                                                <option value="tarija">Tarija</option>
+                                                <option value="chuquisaca">Chuquisaca</option>
+                                                <option value="beni">Beni</option>
+                                                <option value="pando">Pando</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button class="btn btn-primary" onclick="startQuestions()">Comenzar Encuesta</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Preguntas -->
+    <section id="questions" class="section">
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-12">
+                    <div class="question-content">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressBar"></div>
+                </div>
+                <div class="question-counter">
+                    <span id="currentQuestion">1</span> de <span id="totalQuestions">20</span>
+                </div>
+                <div style="text-align: center;">
+                    <div class="thematic-tag" id="thematicTag">Economía</div>
+                </div>
+                <div class="question-card">
+                    <h3 id="questionTitle"></h3>
+                    <p id="questionText"></p>
+                    <div class="answer-options">
+                        <button class="answer-btn" data-value="-2">Muy en<br>desacuerdo</button>
+                        <button class="answer-btn" data-value="-1">En<br>desacuerdo</button>
+                        <button class="answer-btn" data-value="0">Neutral</button>
+                        <button class="answer-btn" data-value="1">De<br>acuerdo</button>
+                        <button class="answer-btn" data-value="2">Muy de<br>acuerdo</button>
+                    </div>
+                    <div class="navigation-buttons">
+                        <button class="btn btn-secondary" id="prevBtn" onclick="previousQuestion()" disabled>‹</button>
+                        <button class="btn btn-secondary" id="nextBtn" onclick="nextQuestion()" disabled>›</button>
+                    </div>
+                </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Resultados -->
+    <section id="results" class="section">
+        <!-- Navbar para Resultados -->
+        <nav class="results-navbar">
+            <div class="navbar-content">
+                <div class="navbar-logo">
+                    <img src="images/Logo SP-11.png" alt="Sintonía Política" class="logo-img">
+                </div>
+                <div class="navbar-links">
+                    <a href="justificaciones.html" class="nav-link">Justificaciones</a>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-12">
+                    <div class="results-content">
+                <h2>Resultados de Afinidad Política</h2>
+                
+                <!-- Contenedor Premium para Ganador y Temáticas -->
+                <div class="premium-results-container">
+                    <!-- Resultado Principal - Top 1 -->
+                    <div class="main-result">
+                        <div class="result-card top-candidate">
+                            <div class="candidate-photo-large">
+                                <img id="topCandidatePhoto" src="" alt="" style="display: none;">
+                                <span id="topCandidateInitials"></span>
+                            </div>
+                            <div class="candidate-info">
+                                <div class="candidate-percentage-large" id="topCandidatePercentage"></div>
+                                <div class="percentage-bar-large">
+                                    <div class="percentage-fill-large" id="topCandidateBar"></div>
+                                </div>
+                                <h3 class="candidate-name-large" id="topCandidateName"></h3>
+                                <div class="candidate-party" id="topCandidateParty">Partido Político</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Afinidad por Bloques Temáticos -->
+                    <div class="thematic-results">
+                        <h3>Tu Afinidad por Área Temática</h3>
+                        <div class="thematic-grid" id="thematicResults">
+                            <!-- Se generará dinámicamente -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Resultados Generales -->
+                <div class="general-results">
+                    <h3>Afinidad con Todos los Candidatos</h3>
+                    <div class="candidates-grid" id="candidatesResults">
+                        <!-- Los resultados se generarán dinámicamente -->
+                    </div>
+                </div>
+
+                <div class="actions">
+                    <button class="btn btn-outline" onclick="restartTest()">Realizar Test Nuevamente</button>
+                    <button class="btn btn-primary" onclick="shareResults()" style="margin-left: 1rem;">Compartir Resultados</button>
+                </div>
+            </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tooltip para información adicional -->
+    <div id="tooltip" class="tooltip hidden">
+        <div class="tooltip-content">
+            <div class="tooltip-header">
+                <span id="tooltipTitle"></span>
+                <button class="tooltip-close" onclick="hideTooltip()">&times;</button>
+            </div>
+            <div id="tooltipText"></div>
+        </div>
+    </div>
+
+    <!-- Modal de validación -->
+    <div id="validationModal" class="validation-modal">
+        <div class="validation-modal-content">
+            <div class="validation-modal-header">
+                <h3 class="validation-modal-title">Información Requerida</h3>
+                <button class="validation-modal-close" onclick="closeValidationModal()">&times;</button>
+            </div>
+            <div class="validation-modal-body">
+                <p>Faltan campos por completar</p>
+            </div>
+            <div class="validation-modal-footer">
+                <button class="btn btn-primary" onclick="closeValidationModal()">Entendido</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Scripts personalizados -->
+    <script src="scripts/data.js"></script>
+    <script src="scripts/main.js"></script>
+</body>
+</html>
