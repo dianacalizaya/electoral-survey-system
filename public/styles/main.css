@@ -1,3 +1,20 @@
+/* --- Ajuste para dispositivos ultra delgados: escala el contenido en vez de romper el layout --- */
+@media (max-width: 383px) {
+    html {
+        font-size: 13px;
+    }
+    body {
+        min-width: 384px;
+        zoom: 0.95;
+        overflow-x: auto;
+    }
+    .question-content {
+        min-width: 340px;
+        max-width: 98vw;
+        font-size: 0.95rem;
+        padding: 0.5rem 0.1rem;
+    }
+}
 @media (max-width: 400px) {
     .question-content {
         min-height: 520px;
