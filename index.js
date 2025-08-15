@@ -42,6 +42,8 @@ const pool = new Pool({
 });
 
 // Endpoint para guardar datos demográficos
+
+// Endpoint para guardar datos demográficos
 app.post('/api/demographics', async (req, res) => {
   const { user_id, age, gender, location } = req.body;
   try {
@@ -64,6 +66,41 @@ app.post('/api/answers', async (req, res) => {
       [user_id, question_id, answer]
     );
     res.status(201).json({ message: 'Respuesta guardada' });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Nuevo endpoint para guardar todo en respuestas_encuesta
+app.post('/api/respuestas_encuesta', async (req, res) => {
+  const {
+    user_id,
+    edad,
+    genero,
+    departamento,
+    respuestas // Array de 20 respuestas
+  } = req.body;
+  if (!user_id || !edad || !genero || !departamento || !Array.isArray(respuestas) || respuestas.length !== 20) {
+    return res.status(400).json({ error: 'Datos incompletos o formato incorrecto' });
+  }
+  try {
+    const values = [
+      user_id,
+      edad,
+      genero,
+      departamento,
+      ...respuestas
+    ];
+    const placeholders = values.map((_, i) => `$${i + 1}`).join(', ');
+    const query = `INSERT INTO respuestas_encuesta (
+      user_id, edad, genero, departamento,
+      respuesta_1, respuesta_2, respuesta_3, respuesta_4, respuesta_5,
+      respuesta_6, respuesta_7, respuesta_8, respuesta_9, respuesta_10,
+      respuesta_11, respuesta_12, respuesta_13, respuesta_14, respuesta_15,
+      respuesta_16, respuesta_17, respuesta_18, respuesta_19, respuesta_20
+    ) VALUES (${placeholders})`;
+    await pool.query(query, values);
+    res.status(201).json({ message: 'Respuestas guardadas en una sola fila' });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

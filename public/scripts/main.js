@@ -235,48 +235,29 @@ function showResults() {
     localStorage.setItem('userAnswers', JSON.stringify(userAnswers));
     localStorage.setItem('userDemographics', JSON.stringify(userDemographics));
 
+
     // Generar un user_id único para esta sesión
     const user_id = 'user_' + Date.now() + '_' + Math.floor(Math.random() * 10000);
 
-    // Enviar datos demográficos al backend
-    const demographicsPayload = {
+    // Enviar TODO en un solo request al nuevo endpoint
+    const payload = {
         user_id,
-        age: userDemographics.age,
-        gender: userDemographics.gender,
-        location: userDemographics.department // El backend espera 'location'
+        edad: userDemographics.age,
+        genero: userDemographics.gender,
+        departamento: userDemographics.department,
+        respuestas: userAnswers.map(ans => ans === null ? null : ans)
     };
-    fetch('/api/demographics', {
+    fetch('/api/respuestas_encuesta', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(demographicsPayload)
+        body: JSON.stringify(payload)
     })
     .then(res => res.json())
     .then(data => {
-    // console.log('Demográficos enviados:', data);
+        // console.log('Respuestas guardadas en una sola fila:', data);
     })
     .catch(err => {
-    // console.error('Error enviando demográficos:', err);
-    });
-
-    // Enviar respuestas al backend
-    window.testData.questions.forEach((q, idx) => {
-        const answerPayload = {
-            user_id,
-            question_id: q.id || (idx + 1).toString(),
-            answer: userAnswers[idx]
-        };
-        fetch('/api/answers', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(answerPayload)
-        })
-        .then(res => res.json())
-        .then(data => {
-            // console.log(`Respuesta enviada para pregunta ${idx + 1}:`, data);
-        })
-        .catch(err => {
-            // console.error(`Error enviando respuesta ${idx + 1}:`, err);
-        });
+        // console.error('Error guardando respuestas:', err);
     });
 
     const affinityScores = calculateAffinity();
