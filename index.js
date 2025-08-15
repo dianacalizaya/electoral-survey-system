@@ -24,11 +24,11 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'pages', 'index.html'));
 });
 
-app.get('/justificaciones', (req, res) => {
+app.get(['/justificaciones', '/justificaciones.html'], (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'pages', 'justificaciones.html'));
 });
 
-app.get('/mis-resultados', (req, res) => {
+app.get(['/mis-resultados', '/mis-resultados.html'], (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'pages', 'mis-resultados.html'));
 });
 
