@@ -119,7 +119,7 @@ function processTextForTooltips(text) {
 
 // Función para mostrar tooltip
 function showTooltip(term) {
-    console.log('Mostrando tooltip para:', term); // Debug
+    // console.log('Mostrando tooltip para:', term); // Debug
     const { glossary } = window.testData;
     const info = glossary[term.toLowerCase()];
     
@@ -129,24 +129,24 @@ function showTooltip(term) {
         const tooltipElement = document.getElementById('tooltip');
         if (tooltipElement) {
             tooltipElement.classList.remove('hidden');
-            console.log('Tooltip mostrado correctamente'); // Debug
+            // console.log('Tooltip mostrado correctamente'); // Debug
         } else {
-            console.error('Elemento tooltip no encontrado'); // Debug
+            // console.error('Elemento tooltip no encontrado'); // Debug
         }
     } else {
-        console.error('No se encontró información para el término:', term); // Debug
+    // console.error('No se encontró información para el término:', term); // Debug
     }
 }
 
 // Función para ocultar tooltip
 function hideTooltip() {
-    console.log('Ocultando tooltip'); // Debug
+    // console.log('Ocultando tooltip'); // Debug
     const tooltipElement = document.getElementById('tooltip');
     if (tooltipElement) {
         tooltipElement.classList.add('hidden');
-        console.log('Tooltip ocultado correctamente'); // Debug
+    // console.log('Tooltip ocultado correctamente'); // Debug
     } else {
-        console.error('Elemento tooltip no encontrado al ocultar'); // Debug
+    // console.error('Elemento tooltip no encontrado al ocultar'); // Debug
     }
 }
 
@@ -168,11 +168,11 @@ function updateNavigationButtons() {
             nextBtn.disabled = true;
             showResults();
         };
-        nextBtn.classList.add('finish-btn');
+        nextBtn.classList.add('finish-btn', 'pulse-animate');
     } else {
         nextBtn.innerHTML = '›';
         nextBtn.onclick = nextQuestion;
-        nextBtn.classList.remove('finish-btn');
+        nextBtn.classList.remove('finish-btn', 'pulse-animate');
     }
 }
 
@@ -252,10 +252,10 @@ function showResults() {
     })
     .then(res => res.json())
     .then(data => {
-        console.log('Demográficos enviados:', data);
+    // console.log('Demográficos enviados:', data);
     })
     .catch(err => {
-        console.error('Error enviando demográficos:', err);
+    // console.error('Error enviando demográficos:', err);
     });
 
     // Enviar respuestas al backend
@@ -272,10 +272,10 @@ function showResults() {
         })
         .then(res => res.json())
         .then(data => {
-            console.log(`Respuesta enviada para pregunta ${idx + 1}:`, data);
+            // console.log(`Respuesta enviada para pregunta ${idx + 1}:`, data);
         })
         .catch(err => {
-            console.error(`Error enviando respuesta ${idx + 1}:`, err);
+            // console.error(`Error enviando respuesta ${idx + 1}:`, err);
         });
     });
 
@@ -642,9 +642,9 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // Configurar event listeners adicionales si es necesario
-    console.log('Test de Afinidad Política cargado correctamente');
-    console.log(`${window.testData.questions.length} preguntas disponibles`);
-    console.log(`${window.testData.candidates.length} candidatos configurados`);
+    // console.log('Test de Afinidad Política cargado correctamente');
+    // console.log(`${window.testData.questions.length} preguntas disponibles`);
+    // console.log(`${window.testData.candidates.length} candidatos configurados`);
 });
 
 // Función para compartir resultados
@@ -660,7 +660,7 @@ function shareResults() {
             title: 'Mis Resultados - Test de Afinidad Política 2024',
             text: shareText,
             url: window.location.href
-        }).catch(err => console.log('Error al compartir:', err));
+    }).catch(err => {/* console.log('Error al compartir:', err); */});
     } else {
         // Fallback: copiar al portapapeles
         navigator.clipboard.writeText(shareText).then(() => {
@@ -808,8 +808,8 @@ function testCalculation() {
     // Respuestas de prueba que deberían dar 100% con Samuel Doria
     const testAnswers = [2, 2, -1, 2, 2, 1, -2, 2, 1, 2, 2, 2, 2, 2, 2, -1, 0, 1, 2, 0];
     
-    console.log('=== PRUEBA DE CÁLCULO ===');
-    console.log('Respuestas de prueba:', testAnswers);
+    // console.log('=== PRUEBA DE CÁLCULO ===');
+    // console.log('Respuestas de prueba:', testAnswers);
     
     const { candidates, candidateScores } = window.testData;
     
@@ -825,7 +825,7 @@ function testCalculation() {
                 validQuestions++;
                 
                 if (candidateIndex === 0) { // Solo mostrar detalles para Samuel Doria
-                    console.log(`Pregunta ${questionIndex + 1}: Usuario=${userAnswer}, ${candidate.name}=${candidateAnswer}, Distancia=${distance}`);
+                    // console.log(`Pregunta ${questionIndex + 1}: Usuario=${userAnswer}, ${candidate.name}=${candidateAnswer}, Distancia=${distance}`);
                 }
             }
         });
@@ -834,7 +834,7 @@ function testCalculation() {
         const affinity = 1 - (totalDistance / maxPossibleDistance);
         const affinityPercentage = Math.round(affinity * 100);
         
-        console.log(`${candidate.name}: Distancia total=${totalDistance}, Afinidad=${affinityPercentage}%`);
+    // console.log(`${candidate.name}: Distancia total=${totalDistance}, Afinidad=${affinityPercentage}%`);
     });
 }
 
