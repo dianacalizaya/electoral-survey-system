@@ -14,16 +14,22 @@
     font-weight: 400;
 }
 .custom-footer .footer-mail {
-    color: var(--primary-teal);
-    font-weight: 600;
+    color: var(--petrol-medium);
+    font-weight: 700;
     text-decoration: none;
     margin-left: 0.3em;
-    transition: color 0.2s;
+    font-size: 1.08em;
+    letter-spacing: 0.01em;
+    border-radius: 15px;
+    padding: 0.2em 0.7em;
+    transition: all 0.3s ease;
 }
 .custom-footer .footer-mail:hover {
-    color: var(--primary-dark);
+    color: var(--petrol-dark);
+    background: rgba(74, 122, 138, 0.10);
     text-decoration: underline;
     cursor: pointer;
+    box-shadow: 0 2px 8px 0 #e8f1f5;
 }
 /* Paleta de colores del logo */
 :root {
