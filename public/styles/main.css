@@ -3,9 +3,9 @@
     background: #fcfcfd;
     color: var(--petrol-light);
     text-align: center;
-    padding: 2rem 1rem 1.5rem 1rem;
+    padding: 1.1rem 1rem 0.7rem 1rem;
     font-size: 0.93rem;
-    border-top: 2px solid var(--primary-teal);
+    border-top: 2.5px solid var(--primary-dark);
     margin-top: 0;
     letter-spacing: 0.01em;
     box-shadow: 0 -2px 12px 0 rgba(5,172,181,0.03);
