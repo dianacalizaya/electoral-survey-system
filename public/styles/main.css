@@ -1,3 +1,30 @@
+/* ===== Footer Minimalista ===== */
+.custom-footer {
+    background: var(--petrol-pale);
+    color: var(--petrol-light);
+    text-align: center;
+    padding: 2rem 1rem 1.5rem 1rem;
+    font-size: 1.05rem;
+    border-top: 1px solid #e8f1f5;
+    margin-top: 0;
+    letter-spacing: 0.01em;
+}
+.custom-footer .footer-content {
+    color: var(--petrol-light);
+    font-weight: 400;
+}
+.custom-footer .footer-mail {
+    color: var(--primary-teal);
+    font-weight: 600;
+    text-decoration: none;
+    margin-left: 0.3em;
+    transition: color 0.2s;
+}
+.custom-footer .footer-mail:hover {
+    color: var(--primary-dark);
+    text-decoration: underline;
+    cursor: pointer;
+}
 /* Paleta de colores del logo */
 :root {
     --primary-dark: #01354D;
