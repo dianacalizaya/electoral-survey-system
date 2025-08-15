@@ -771,18 +771,29 @@ p {
 
 /* Sección de preguntas */
 .question-content {
-    background: #F6F6F4;
-    padding: 2.5rem;
-    border-radius: 16px;
-    box-shadow: 0 10px 40px rgba(51, 51, 51, 0.08);
-    max-width: 900px;
-    min-height: 520px;
-    height: 520px;
-    margin: 0 auto;
-    border: 1px solid #E0E0DE;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+        background: #F6F6F4;
+        padding: 2.5rem;
+        border-radius: 16px;
+        box-shadow: 0 10px 40px rgba(51, 51, 51, 0.08);
+        max-width: 900px;
+        min-height: 520px;
+        height: auto;
+        margin: 0 auto;
+        border: 1px solid #E0E0DE;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        word-break: break-word;
+}
+
+@media (max-width: 600px) {
+    .question-content {
+        padding: 1.1rem 0.7rem;
+        min-height: 340px;
+        font-size: 1.01rem;
+        height: auto;
+        max-width: 98vw;
+    }
 }
 
 /* Fondos temáticos deshabilitados - usando fondo uniforme */
