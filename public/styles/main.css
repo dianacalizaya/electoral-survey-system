@@ -1,3 +1,13 @@
+@media (max-width: 400px) {
+    .question-content {
+        min-height: 520px;
+        padding: 0.7rem 0.2rem;
+        font-size: 0.97rem;
+    }
+    .question-content h2, .question-content h3 {
+        font-size: 1.1rem;
+    }
+}
 /* ===== Footer Minimalista ===== */
 .custom-footer {
     background: #fcfcfd;
@@ -789,10 +799,12 @@ p {
 @media (max-width: 600px) {
     .question-content {
         padding: 1.1rem 0.7rem;
-        min-height: 340px;
+        min-height: 420px;
         font-size: 1.01rem;
-        height: auto;
+        height: auto !important;
         max-width: 98vw;
+        overflow-y: auto;
+        word-break: break-word;
     }
 }
 
