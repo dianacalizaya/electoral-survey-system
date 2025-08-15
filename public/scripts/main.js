@@ -283,6 +283,9 @@ function showResults() {
     hideAllSections();
     resultsSection.classList.add('active');
 
+    // Asegurar que al mostrar resultados la vista suba al inicio en todos los dispositivos
+    window.scrollTo(0, 0);
+
     displayResults(affinityScores);
 }
 
