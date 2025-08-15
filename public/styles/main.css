@@ -1,13 +1,14 @@
 /* ===== Footer Minimalista ===== */
 .custom-footer {
-    background: var(--petrol-pale);
+    background: #fcfcfd;
     color: var(--petrol-light);
     text-align: center;
     padding: 2rem 1rem 1.5rem 1rem;
-    font-size: 1.05rem;
-    border-top: 1px solid #e8f1f5;
+    font-size: 0.93rem;
+    border-top: 2px solid var(--primary-teal);
     margin-top: 0;
     letter-spacing: 0.01em;
+    box-shadow: 0 -2px 12px 0 rgba(5,172,181,0.03);
 }
 .custom-footer .footer-content {
     color: var(--petrol-light);
