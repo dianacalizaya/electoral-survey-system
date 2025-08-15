@@ -164,7 +164,10 @@ function updateNavigationButtons() {
     // Cambiar texto y estilo del botón en la última pregunta
     if (currentQuestionIndex === window.testData.questions.length - 1) {
         nextBtn.innerHTML = '✓';
-    nextBtn.onclick = showResults;
+        nextBtn.onclick = function() {
+            nextBtn.disabled = true;
+            showResults();
+        };
         nextBtn.classList.add('finish-btn');
     } else {
         nextBtn.innerHTML = '›';
@@ -201,15 +204,13 @@ function selectAnswer(button, value) {
     // Actualizar botones de navegación
     updateNavigationButtons();
 
-    // Avanzar automáticamente a la siguiente pregunta después de un breve delay
-    setTimeout(() => {
-        if (currentQuestionIndex < window.testData.questions.length - 1) {
+    // Si NO es la última pregunta, avanzar automáticamente
+    if (currentQuestionIndex < window.testData.questions.length - 1) {
+        setTimeout(() => {
             nextQuestion();
-        } else {
-            // Si es la última pregunta, mostrar resultados automáticamente
-            showResults();
-        }
-    }, 600); // Delay de 600ms para que el usuario vea la selección y animación
+        }, 600);
+    }
+    // Si es la última pregunta, NO mostrar resultados automáticamente, esperar clic en ✓
 }
 
 // Función para avanzar a la siguiente pregunta
