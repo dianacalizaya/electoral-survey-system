@@ -8,6 +8,17 @@ const welcomeSection = document.getElementById('welcome');
 const questionsSection = document.getElementById('questions');
 const resultsSection = document.getElementById('results');
 
+// Función para mostrar/ocultar el footer según la sección activa
+function updateFooterVisibility() {
+    const footer = document.querySelector('.custom-footer');
+    if (!footer) return;
+    if (welcomeSection.classList.contains('active')) {
+        footer.style.display = '';
+    } else {
+        footer.style.display = 'none';
+    }
+}
+
 // Función para iniciar las preguntas después de completar datos demográficos
 function startQuestions() {
     // Validar que todos los campos estén completados
@@ -37,6 +48,7 @@ function startQuestions() {
     // Mostrar primera pregunta
     hideAllSections();
     questionsSection.classList.add('active');
+    updateFooterVisibility();
     showQuestion(0);
 }
 
@@ -533,6 +545,7 @@ function hideAllSections() {
     document.querySelectorAll('.section').forEach(section => {
         section.classList.remove('active');
     });
+    updateFooterVisibility();
 }
 
 // Función para obtener estadísticas del test (opcional, para análisis)
@@ -571,6 +584,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Asegurar que solo la sección de bienvenida esté visible
     hideAllSections();
     welcomeSection.classList.add('active');
+    updateFooterVisibility();
     
     // Event listener para cerrar tooltip al hacer clic fuera
     document.getElementById('tooltip').addEventListener('click', function(e) {
